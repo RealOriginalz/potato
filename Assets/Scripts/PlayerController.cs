@@ -15,7 +15,12 @@ public class PlayerController : MonoBehaviour
 		transform.Rotate(0, x, 0);
 		transform.Translate(0, 0, z);
 	}
+
 	void OnTriggerEnter(Collider other) { 
-		Destroy (GameObject.FindWithTag ("Key")); 						//destroy gameobject tagged with "key" upon collision
+		KeyController kc = other.GetComponent<KeyController>();
+		if (kc) {
+			kc.UnlockDoor ();
+			return;
 		}
+	}
 }
